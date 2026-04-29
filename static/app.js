@@ -29,9 +29,9 @@ const avatarChoicesBox = document.getElementById("avatarChoices");
 const AVATAR_CHOICES = [
   {
     id: "female",
-    label: "Kadin",
+    label: "Kadın",
     svg: `
-    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
+    <svg viewBox="0 0 100 120" xmlns="kk1.jpg" aria-label="avatar">
       <circle cx="50" cy="50" r="30" fill="{{face}}" />
       <path d="M14 44 C20 10, 80 10, 86 44 L86 22 C80 2, 20 2, 14 22 Z" fill="{{hair}}" />
       <path d="M12 52 C14 86, 28 106, 38 114 L30 114 C16 102, 6 80, 8 54 Z" fill="{{hair}}" />
@@ -48,7 +48,7 @@ const AVATAR_CHOICES = [
     id: "male",
     label: "Erkek",
     svg: `
-    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
+    <svg viewBox="0 0 100 120" xmlns="erkek1.avif" aria-label="avatar">
       <circle cx="50" cy="50" r="30" fill="{{face}}" />
       <path d="M20 42 C25 20, 75 20, 80 42 L80 30 C75 15, 25 15, 20 30 Z" fill="{{hair}}" />
       {{accessory}}
@@ -67,11 +67,11 @@ function setStatus(text) {
 }
 
 socket.on("connect", () => {
-  setStatus("Sunucuya baglandi.");
+  setStatus("Sunucuya baglandı.");
 });
 
 socket.on("connect_error", () => {
-  setStatus("Sunucu baglantisi kurulamadi. Sayfayi yenileyin.");
+  setStatus("Sunucu baglantısı kurulamadi. Sayfayı yenileyin.");
 });
 
 function makeQuestionBlock(index) {
