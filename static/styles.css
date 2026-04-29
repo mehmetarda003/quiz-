@@ -115,10 +115,30 @@ input, select {
   color: #cbd5e1;
 }
 
-#avatarPackInput {
-  min-height: 120px;
-  font-family: Consolas, monospace;
-  margin-bottom: 8px;
+.avatar-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.avatar-choice-card {
+  border: 1px solid #334155;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 8px;
+  text-align: center;
+}
+
+.avatar-choice-card.active {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+}
+
+.avatar-choice-card svg {
+  width: 92px;
+  height: 92px;
 }
 
 #avatarPreview svg {
