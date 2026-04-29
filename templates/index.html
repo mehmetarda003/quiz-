@@ -28,7 +28,6 @@
           <p>Oda Kodu: <strong id="roomCodeLabel"></strong></p>
           <div id="qrCode"></div>
           <p id="joinLinkText"></p>
-          <button id="copyLinkBtn" class="secondary hidden">Baglantiyi Kopyala</button>
           <button id="startQuizBtn">Yarışmayı Başlat</button>
           <button id="nextQuestionBtn" class="secondary hidden">Sonraki Soru</button>
         </div>
@@ -40,16 +39,7 @@
         <label>Oda Kodu <input id="joinCode" maxlength="6" /></label>
 
         <div class="avatar-editor">
-          <h3>Avatar </h3>
-          <label>Cinsiyet
-            <select id="gender">
-              <option value="female">Kadin</option>
-              <option value="male">Erkek</option>
-            </select>
-          </label>
-          <label>Karakter Stili
-            <select id="avatarStyle"></select>
-          </label>
+          <h3>Avatar Seçimi</h3>
           <label>Ten / Yüz Rengi <input type="color" id="faceColor" value="#ffd7b5" /></label>
           <label>Saç Rengi <input type="color" id="hairColor" value="#442f1a" /></label>
           <label>Kıyafet Rengi <input type="color" id="shirtColor" value="#3a86ff" /></label>
@@ -60,12 +50,6 @@
               <option value="cap">Sapka</option>
             </select>
           </label>
-          <p class="avatar-help">
-            Kendi cizimlerini eklemek icin asagidaki alana JSON formatinda SVG paketini yapistir.
-            SVG icinde <code>&#123;&#123;face&#125;&#125;</code>, <code>&#123;&#123;hair&#125;&#125;</code>, <code>&#123;&#123;shirt&#125;&#125;</code> ve opsiyonel <code>&#123;&#123;accessory&#125;&#125;</code> kullanabilirsin.
-          </p>
-          <textarea id="avatarPackInput" rows="8" placeholder='{"female":[{"id":"ozel1","label":"Benim Cizimim","svg":"<svg ... fill=\"&#123;&#123;face&#125;&#125;\">&#123;&#123;accessory&#125;&#125;</svg>"}],"male":[]}'></textarea>
-          <button id="saveAvatarPackBtn" type="button" class="secondary">Karakter Paketini Kaydet</button>
           <div id="avatarPreview"></div>
         </div>
 
@@ -91,9 +75,6 @@
 
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script>
-      window.__LOCAL_IP__ = "{{ local_ip }}";
-    </script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
   </body>
   </html>
