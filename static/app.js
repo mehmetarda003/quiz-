@@ -30,6 +30,14 @@ function setStatus(text) {
   statusText.textContent = text;
 }
 
+socket.on("connect", () => {
+  setStatus("Sunucuya baglandi.");
+});
+
+socket.on("connect_error", () => {
+  setStatus("Sunucu baglantisi kurulamadi. Sayfayi yenileyin.");
+});
+
 function makeQuestionBlock(index) {
   const wrap = document.createElement("div");
   wrap.className = "question-item";
