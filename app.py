@@ -6,14 +6,17 @@ import string
 from dataclasses import dataclass, field
 from typing import Any
 
+import os
+
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit, join_room
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "quiz-secret-key"
 
-# Localde (Windows) eventlet uyarilarindan kacmak icin threading.
-socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
+# Render/production ortaminda gevent kullan; local Windows'ta threading fallback.
+async_mode = "gevent" if os.getenv("RENDER") == "true" else "threading"
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode=async_mode)
 
 
 def make_room_code(length: int = 6) -> str:
