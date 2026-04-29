@@ -25,78 +25,42 @@ const leaderboardList = document.getElementById("leaderboardList");
 const questionTitle = document.getElementById("questionTitle");
 const questionText = document.getElementById("questionText");
 const optionsBox = document.getElementById("options");
-const genderSelect = document.getElementById("gender");
-const avatarStyleSelect = document.getElementById("avatarStyle");
-const avatarPackInput = document.getElementById("avatarPackInput");
-const saveAvatarPackBtn = document.getElementById("saveAvatarPackBtn");
-
-const CUSTOM_AVATAR_PACK_KEY = "quiz_custom_avatar_pack_v1";
-const BUILTIN_AVATAR_STYLES = {
-  female: [
-    {
-      id: "female-classic",
-      label: "Classic",
-      svg: `
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
-        <circle cx="50" cy="50" r="30" fill="{{face}}" />
-        <path d="M18 48 C22 18, 78 18, 82 48 L82 28 C78 10, 22 10, 18 28 Z" fill="{{hair}}" />
-        {{accessory}}
-        <circle cx="40" cy="50" r="3" fill="#111" />
-        <circle cx="60" cy="50" r="3" fill="#111" />
-        <path d="M38 62 Q50 72 62 62" stroke="#111" stroke-width="2" fill="none" />
-        <rect x="25" y="82" width="50" height="30" rx="10" fill="{{shirt}}" />
-      </svg>
-      `,
-    },
-    {
-      id: "female-hero",
-      label: "Hero",
-      svg: `
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
-        <ellipse cx="50" cy="50" rx="28" ry="30" fill="{{face}}" />
-        <path d="M14 40 C24 12, 76 12, 86 40 L86 26 C78 6, 22 6, 14 26 Z" fill="{{hair}}" />
-        {{accessory}}
-        <circle cx="40" cy="50" r="3" fill="#111" />
-        <circle cx="60" cy="50" r="3" fill="#111" />
-        <path d="M36 63 Q50 76 64 63" stroke="#111" stroke-width="2" fill="none" />
-        <path d="M18 84 C24 72, 76 72, 82 84 L82 112 L18 112 Z" fill="{{shirt}}" />
-      </svg>
-      `,
-    },
-  ],
-  male: [
-    {
-      id: "male-classic",
-      label: "Classic",
-      svg: `
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
-        <circle cx="50" cy="50" r="30" fill="{{face}}" />
-        <path d="M20 42 C26 20, 74 20, 80 42 L80 30 C74 16, 26 16, 20 30 Z" fill="{{hair}}" />
-        {{accessory}}
-        <circle cx="40" cy="50" r="3" fill="#111" />
-        <circle cx="60" cy="50" r="3" fill="#111" />
-        <path d="M38 62 Q50 68 62 62" stroke="#111" stroke-width="2" fill="none" />
-        <rect x="24" y="82" width="52" height="30" rx="7" fill="{{shirt}}" />
-      </svg>
-      `,
-    },
-    {
-      id: "male-sport",
-      label: "Sport",
-      svg: `
-      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
-        <rect x="22" y="22" width="56" height="56" rx="24" fill="{{face}}" />
-        <path d="M20 44 C24 22, 76 22, 80 44 L80 30 C74 14, 26 14, 20 30 Z" fill="{{hair}}" />
-        {{accessory}}
-        <circle cx="40" cy="50" r="3" fill="#111" />
-        <circle cx="60" cy="50" r="3" fill="#111" />
-        <path d="M38 64 Q50 70 62 64" stroke="#111" stroke-width="2" fill="none" />
-        <path d="M20 84 L80 84 L74 112 L26 112 Z" fill="{{shirt}}" />
-      </svg>
-      `,
-    },
-  ],
-};
+const avatarChoicesBox = document.getElementById("avatarChoices");
+const AVATAR_CHOICES = [
+  {
+    id: "female",
+    label: "Kadin",
+    svg: `
+    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
+      <circle cx="50" cy="50" r="30" fill="{{face}}" />
+      <path d="M14 44 C20 10, 80 10, 86 44 L86 22 C80 2, 20 2, 14 22 Z" fill="{{hair}}" />
+      <path d="M12 52 C14 86, 28 106, 38 114 L30 114 C16 102, 6 80, 8 54 Z" fill="{{hair}}" />
+      <path d="M88 52 C86 86, 72 106, 62 114 L70 114 C84 102, 94 80, 92 54 Z" fill="{{hair}}" />
+      {{accessory}}
+      <circle cx="40" cy="50" r="3" fill="#111" />
+      <circle cx="60" cy="50" r="3" fill="#111" />
+      <path d="M38 63 Q50 73 62 63" stroke="#111" stroke-width="2" fill="none" />
+      <path d="M18 84 C24 72, 76 72, 82 84 L82 112 L18 112 Z" fill="{{shirt}}" />
+    </svg>
+    `,
+  },
+  {
+    id: "male",
+    label: "Erkek",
+    svg: `
+    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-label="avatar">
+      <circle cx="50" cy="50" r="30" fill="{{face}}" />
+      <path d="M20 42 C25 20, 75 20, 80 42 L80 30 C75 15, 25 15, 20 30 Z" fill="{{hair}}" />
+      {{accessory}}
+      <circle cx="40" cy="50" r="3" fill="#111" />
+      <circle cx="60" cy="50" r="3" fill="#111" />
+      <path d="M38 62 Q50 68 62 62" stroke="#111" stroke-width="2" fill="none" />
+      <rect x="25" y="82" width="50" height="30" rx="8" fill="{{shirt}}" />
+    </svg>
+    `,
+  },
+];
+let selectedAvatarId = AVATAR_CHOICES[0].id;
 
 function setStatus(text) {
   statusText.textContent = text;
@@ -148,8 +112,7 @@ function avatarState() {
     hair: document.getElementById("hairColor").value,
     shirt: document.getElementById("shirtColor").value,
     accessory: document.getElementById("accessory").value,
-    gender: genderSelect.value,
-    styleId: avatarStyleSelect.value,
+    avatarId: selectedAvatarId,
   };
 }
 
@@ -166,57 +129,41 @@ function getAccessoryMarkup(avatar) {
   return `${cap}${glasses}`;
 }
 
-function loadCustomAvatarPack() {
-  try {
-    const raw = localStorage.getItem(CUSTOM_AVATAR_PACK_KEY);
-    if (!raw) return { female: [], male: [] };
-    const parsed = JSON.parse(raw);
-    return {
-      female: Array.isArray(parsed.female) ? parsed.female : [],
-      male: Array.isArray(parsed.male) ? parsed.male : [],
-    };
-  } catch (_) {
-    return { female: [], male: [] };
-  }
-}
-
-function getStyleOptionsForGender(gender) {
-  const customPack = loadCustomAvatarPack();
-  const builtins = BUILTIN_AVATAR_STYLES[gender] || [];
-  const customs = customPack[gender] || [];
-  return [...builtins, ...customs].filter((item) => item && item.id && item.svg);
-}
-
-function refreshStyleDropdown() {
-  const prevValue = avatarStyleSelect.value;
-  const styles = getStyleOptionsForGender(genderSelect.value);
-  avatarStyleSelect.innerHTML = "";
-
-  styles.forEach((style) => {
-    const option = document.createElement("option");
-    option.value = style.id;
-    option.textContent = style.label || style.id;
-    avatarStyleSelect.appendChild(option);
-  });
-
-  if (styles.some((s) => s.id === prevValue)) {
-    avatarStyleSelect.value = prevValue;
-  }
-}
-
-function selectedStyleSvg(avatar) {
-  const styles = getStyleOptionsForGender(avatar.gender);
-  const selected = styles.find((style) => style.id === avatar.styleId) || styles[0];
-  return selected ? selected.svg : "";
+function selectedAvatarSvg(avatar) {
+  const selected = AVATAR_CHOICES.find((item) => item.id === avatar.avatarId) || AVATAR_CHOICES[0];
+  return selected.svg;
 }
 
 function renderAvatar(avatar) {
-  const svg = selectedStyleSvg(avatar);
+  const svg = selectedAvatarSvg(avatar);
   return svg
     .replaceAll("{{face}}", avatar.face)
     .replaceAll("{{hair}}", avatar.hair)
     .replaceAll("{{shirt}}", avatar.shirt)
     .replaceAll("{{accessory}}", getAccessoryMarkup(avatar));
+}
+
+function renderAvatarChoices() {
+  avatarChoicesBox.innerHTML = "";
+  AVATAR_CHOICES.forEach((choice) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "avatar-choice-card";
+    if (choice.id === selectedAvatarId) {
+      card.classList.add("active");
+    }
+    const preview = renderAvatar({
+      ...avatarState(),
+      avatarId: choice.id,
+    });
+    card.innerHTML = `${preview}<div>${choice.label}</div>`;
+    card.onclick = () => {
+      selectedAvatarId = choice.id;
+      renderAvatarChoices();
+      updateAvatarPreview();
+    };
+    avatarChoicesBox.appendChild(card);
+  });
 }
 
 function updateAvatarPreview() {
@@ -351,46 +298,12 @@ socket.on("answer_received", () => {});
 socket.on("error_msg", ({ message }) => setStatus(`Hata: ${message}`));
 
 ["faceColor", "hairColor", "shirtColor", "accessory"].forEach((id) => {
-  document.getElementById(id).addEventListener("input", updateAvatarPreview);
+  document.getElementById(id).addEventListener("input", () => {
+    renderAvatarChoices();
+    updateAvatarPreview();
+  });
 });
 
-genderSelect.addEventListener("change", () => {
-  refreshStyleDropdown();
-  updateAvatarPreview();
-});
-
-avatarStyleSelect.addEventListener("change", updateAvatarPreview);
-
-saveAvatarPackBtn.onclick = () => {
-  const raw = avatarPackInput.value.trim();
-  if (!raw) {
-    localStorage.removeItem(CUSTOM_AVATAR_PACK_KEY);
-    refreshStyleDropdown();
-    updateAvatarPreview();
-    setStatus("Ozel karakter paketi temizlendi.");
-    return;
-  }
-
-  try {
-    const parsed = JSON.parse(raw);
-    const validFemale = Array.isArray(parsed.female) ? parsed.female : [];
-    const validMale = Array.isArray(parsed.male) ? parsed.male : [];
-    localStorage.setItem(
-      CUSTOM_AVATAR_PACK_KEY,
-      JSON.stringify({ female: validFemale, male: validMale })
-    );
-    refreshStyleDropdown();
-    updateAvatarPreview();
-    setStatus("Ozel karakter paketi kaydedildi.");
-  } catch (_) {
-    setStatus("JSON formati hatali. Paketi kontrol edin.");
-  }
-};
-
-const existingPack = localStorage.getItem(CUSTOM_AVATAR_PACK_KEY);
-if (existingPack) {
-  avatarPackInput.value = existingPack;
-}
-refreshStyleDropdown();
+renderAvatarChoices();
 questionsList.appendChild(makeQuestionBlock(1));
 updateAvatarPreview();
